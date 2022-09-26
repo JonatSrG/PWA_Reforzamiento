@@ -3,6 +3,12 @@ function sumarUno(numero) {
 
     var promesa = new Promise(function (resolve, reject) {
 
+        console.log(numero);
+
+        if (numero >= 8) {
+            reject('El numero es muy alto');
+        }
+
         setTimeout(function () {
 
             resolve(numero + 1);
@@ -14,7 +20,22 @@ function sumarUno(numero) {
     return promesa;
 }
 
-sumarUno(7).then(nuevoNumero => {
+sumarUno(5)
+    .then(sumarUno)
+    .then(sumarUno)
+    .then(sumarUno)
+    .then(sumarUno)
+    .then(sumarUno)
+    .then(nuevoNumero => {
+        console.log(nuevoNumero);
+    })
+    .catch(error => {
+        console.log('ERROR EN PROMESA');
+        console.log(error);
+    });
+
+
+/*sumarUno(5).then(nuevoNumero => {
     console.log(nuevoNumero);
     return sumarUno(nuevoNumero);
 })
@@ -22,7 +43,8 @@ sumarUno(7).then(nuevoNumero => {
         console.log(nuevoNumero);
         return sumarUno(nuevoNumero);
     })
-    .then( nuevoNumero => {
+    .then(nuevoNumero => {
         console.log(nuevoNumero);
-    
+
     });
+*/
